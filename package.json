@@ -1,0 +1,23 @@
+{
+  "name": "store_invoice_generator",
+  "version": "0.0.1",
+  "description": "This app generates automatically invoices for sales. ",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/difemove/store_invoice_generator_BE.git"
+  },
+  "keywords": [
+    "nodejs",
+    "JS"
+  ],
+  "author": "Diego Mora",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/difemove/store_invoice_generator_BE/issues"
+  },
+  "homepage": "https://github.com/difemove/store_invoice_generator_BE#readme"
+}
