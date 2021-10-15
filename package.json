@@ -4,7 +4,7 @@
   "description": "This app generates automatically invoices for sales. ",
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha src/app/test/test.js",
     "dev": "nodemon index.js",
     "start": "node index.js",
     "lint": "eslint"
