@@ -1,0 +1,22 @@
+[
+    {
+     "id": 1,
+     "name": "Ice Cream",
+     "value": 5
+   },
+   {
+     "id": 2,
+     "name": "Yogurt",
+     "value": 2
+   },
+   {
+     "id": 3,
+     "name": "Cheese",
+     "value": 7
+   },
+   {
+     "id": 4,
+     "name": "Milk",
+     "value": 1
+   }
+ ]

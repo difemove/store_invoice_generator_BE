@@ -1,0 +1,26 @@
+[
+    {
+      "CLIENT_ID": 1,
+      "NAME": "Diego",
+      "LASTNAME": "Mora",
+      "DOCUMENT_ID": 123456789
+    },
+    {
+      "CLIENT_ID": 2,
+      "NAME": "Diana",
+      "LASTNAME": "Uribe",
+      "DOCUMENT_ID": 123456781
+    },
+    {
+      "CLIENT_ID": 3,
+      "NAME": "Pancracio",
+      "LASTNAME": "Perez",
+      "DOCUMENT_ID": 123456782
+    },
+    {
+      "CLIENT_ID": 4,
+      "NAME": "Penelope",
+      "LASTNAME": "Cruz",
+      "DOCUMENT_ID": 123456783
+    }
+  ]

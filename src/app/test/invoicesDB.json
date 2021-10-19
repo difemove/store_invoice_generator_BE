@@ -1,0 +1,37 @@
+[
+    {
+      "INVOICE_ID": 1,
+      "PAYMENT_DATE": "2021-10-15 13:00:15",
+      "ACTIVE_FLAG": 1,
+      "CLIENT_ID": 1,
+      "PROMOCODE_ID": 1
+    },
+    {
+      "INVOICE_ID": 2,
+      "PAYMENT_DATE": "2021-10-14 12:00:27",
+      "ACTIVE_FLAG": 0,
+      "CLIENT_ID": 2,
+      "PROMOCODE_ID": 1
+    },
+    {
+      "INVOICE_ID": 3,
+      "PAYMENT_DATE": "2021-10-15 17:05:00",
+      "ACTIVE_FLAG": 1,
+      "CLIENT_ID": 3,
+      "PROMOCODE_ID": "NULL"
+    },
+    {
+      "INVOICE_ID": 4,
+      "PAYMENT_DATE": "2021-03-15 13:00:15",
+      "ACTIVE_FLAG": 0,
+      "CLIENT_ID": 4,
+      "PROMOCODE_ID": 2
+    },
+    {
+      "INVOICE_ID": 5,
+      "PAYMENT_DATE": "NULL",
+      "ACTIVE_FLAG": 0,
+      "CLIENT_ID": 4,
+      "PROMOCODE_ID": "NULL"
+    }
+  ]

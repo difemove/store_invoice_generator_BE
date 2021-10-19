@@ -1,0 +1,27 @@
+[
+    {
+      "id": 1,
+      "name": "Diego",
+      "lastName": "Mora",
+      "documentId": 123456789
+    },
+    {
+      "id": 2,
+      "name": "Diana",
+      "lastName": "Uribe",
+      "documentId": 123456781
+    },
+    {
+      "id": 3,
+      "name": "Pancracio",
+      "lastName": "Perez",
+      "documentId": 123456782
+    },
+    {
+      "id": 4,
+      "name": "Penelope",
+      "lastName": "Cruz",
+      "documentId": 123456783
+    }
+]
+

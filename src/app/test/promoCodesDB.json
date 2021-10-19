@@ -1,0 +1,18 @@
+[
+    {
+      "PROMOCODE_ID": 1,
+      "CODE": "VALIDCODE",
+      "VALID_FROM": "2021-02-11",
+      "VALID_TO": "NULL",
+      "DESCRIPTION": "This is a valid code",
+      "PERCENTAGE": 30
+    },
+    {
+      "PROMOCODE_ID": 2,
+      "CODE": "INVALIDCODE",
+      "VALID_FROM": "2021-02-11",
+      "VALID_TO": "2021-04-11",
+      "DESCRIPTION": "This is an invalid code",
+      "PERCENTAGE": 50
+    }
+  ]

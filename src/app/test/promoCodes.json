@@ -1,0 +1,18 @@
+[
+    {
+      "id": 1,
+      "code": "VALIDCODE",
+      "validFrom": "2021-02-11",
+      "validTo": "NULL",
+      "description": "This is a valid code",
+      "percentage": 30
+    },
+    {
+      "id": 2,
+      "code": "INVALIDCODE",
+      "validFrom": "2021-02-11",
+      "validTo": "2021-04-11",
+      "description": "This is an invalid code",
+      "percentage": 50
+    }
+  ]
