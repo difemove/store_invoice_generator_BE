@@ -83,6 +83,21 @@ class ProductsService{
         })
         return products
     }
+
+    constructProductsDTOFromDBMapping(productsInvoiceDB){
+        const productDTOs=[]
+        productsInvoiceDB.forEach(productInvoiceDB=>{
+            const product =this.findOne(productInvoiceDB.PRODUCT_ID)
+            const productDTO={
+                id: product.id,
+                name: product.name,
+                price: product.price, 
+                quantity: productInvoiceDB.QUANTITY}
+            productDTOs.push(productDTO)
+        })
+        return productDTOs
+    }
+    
     async getProductsFromDB(){
         //CHANGE FOR MAPPING WITH DB
         const productsDB= productsDBArray

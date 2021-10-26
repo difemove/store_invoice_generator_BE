@@ -1,5 +1,5 @@
-const dbParameters= require('../config/db.config')
-const mysql = require('mysql')
+const dbParameters= require('../config/db.config');
+const mysql = require('mysql');
 
 let dbPool 
 

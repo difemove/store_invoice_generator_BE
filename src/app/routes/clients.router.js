@@ -1,8 +1,8 @@
-const express = require('express')
-const router = express.Router()
-const ClientsService=require('../services/clients.service')
+const express = require('express');
+const router = express.Router();
+const ClientsService=require('../services/clients.service');
 
-const clientsService=new ClientsService()
+const clientsService=new ClientsService();
 
 
 router.get('/',async (req,res)=>{

@@ -1,6 +1,6 @@
-const ClientModel=require('../model/client')
-const clientsArray= require('../test/clients.json')
-const clientsDBArray= require('../test/clientsDB.json')
+const ClientModel=require('../model/client');
+const clientsArray= require('../test/clients.json');
+const clientsDBArray= require('../test/clientsDB.json');
 
 class ClientsService{
     
@@ -26,6 +26,13 @@ class ClientsService{
         const clients= await this.getClients()
         return clients.find(client=>client.id === id)
     }
+
+    async findClient(id){
+        const clients= await this.getClients()
+        return clients.find(client=>client.id === id)
+    }
+
+
     async findIndex(id){
         return this.clients.findIndex(client=>client.id === id)
     }

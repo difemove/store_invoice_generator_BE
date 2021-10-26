@@ -1,15 +1,19 @@
 //const dbPool=require('../model/dbConnection')
-const InvoiceModel=require('../model/invoice')
-const invoicesDBArray= require('../test/invoicesDB.json')
-const productsService=require('./products.service')
-const clientsService=require('./clients.service')
-const promoCodeService = require('./promoCodes.service')
+const InvoiceModel=require('../model/invoice');
+const invoicesDBArray= require('../test/invoicesDB.json');
+const ProductsService=require('./products.service');
+const ClientsService=require('./clients.service');
+const PromoCodeService = require('./promoCodes.service');
+const productsInvoicesDBArray= require('../test/productInvoicesDB.json');
 
-
+const productsService= new ProductsService();
+const clientsService=new ClientsService();
+const promoCodeService= new PromoCodeService();
 class InvoicesService{
     
     constructor(){
         this.invoices=[]
+    
         //this.makeInvoicesFromDB()
     }
         
@@ -73,10 +77,7 @@ class InvoicesService{
 
     }
 
-    async getClient(id){
-        const client = await clientsService.findOne(id)
-        return client
-    }
+  
     async getProductInvoicesFromDB(invoicesDB){
         const invoicesId= invoicesDB.map(invoice=>invoice.INVOICE_ID)
         const filteredProductInvoicesDB= await this.getFilteredProductInvoicesDB(invoicesId)
@@ -94,7 +95,7 @@ class InvoicesService{
     }
 
     async getProductInvoicesDB() {
-        const productInvoicesDB= invoicesDBArray
+        const productInvoicesDB= productsInvoicesDBArray
         return productInvoicesDB
     
     }
@@ -114,17 +115,30 @@ class InvoicesService{
 
         
         
+        
 
         return invoices
     }
-    
+
+    replacer(key, value) {
+        if(value instanceof Map) {
+          return {
+            dataType: 'Map',
+
+            productId: Array.from(value.entries())
+            , // or with spread: value: [...value]
+          };
+        } else {
+          return value;
+        }
+    }
 
     makeInvoiceMapping(invoiceDB){
         const invoiceId= invoiceDB.INVOICE_ID
         const invoicePaymentDate= invoiceDB.PAYMENT_DATE
         const invoiceActiveFlag= invoiceDB.ACTIVE_FLAG
         const invoiceClientId= invoiceDB.CLIENT_ID
-        const invoicePromoCodeId= invoiceDB.PROMO_CODE_ID
+        const invoicePromoCodeId= invoiceDB.PROMOCODE_ID
             
             const invoiceMapping={
                 id:invoiceId,
@@ -149,6 +163,7 @@ class InvoicesService{
         return invoices
     }
 
+
     async makeInvoice(invoiceMapping,promoCodeColumn = 'id'){
         const {id,paymentDate,activeFlag,clientId,promoCodeId}=invoiceMapping
         const invoiceClient = await this.getClient(clientId)
@@ -159,22 +174,32 @@ class InvoicesService{
             //error
             throw new Error('Client not found')
         }
-        if (typeof promoCode === 'undefined'){
-            //error
-            throw new Error('Promo code not found')
-        }
+        
 
         
         const invoice= new InvoiceModel(id,paymentDate,activeFlag,
-            invoiceClient.id,invoiceClient.name,invoiceClient.lastName,invoiceClient.documentId,
-            promoCode.id,promoCode.code,promoCode.validFrom,promoCode.validTo,
-            promoCode.description, promoCode.percentage)
+            invoiceClient.id,invoiceClient.name,invoiceClient.lastName,invoiceClient.documentId
+            )
         
+        if (typeof promoCode !== 'undefined'){
+            
+            const {id, code, validFrom, 
+                validTo, description,
+                percentage }=promoCode
+            
+                invoice.loadPromoCode(id,code,validFrom,validTo,
+                    description,percentage)
+        }
+
         return invoice
 
     }
 
-    getPromoCode(value,column){
+    async getClient(id){
+        const client = await clientsService.findClient(id);
+        return client;
+    }
+    async getPromoCode(value,column){
         if (column === 'id'){
             return promoCodeService.findOne(value)
         }
@@ -184,7 +209,17 @@ class InvoicesService{
 
     }
 
+    loadProductsDTO(invoices,productInvoicesDB){
+        //Performance could be better adding method in product to get the product from DB
+        invoices.forEach(invoice=>{
+            const productsInvoiceDB= productInvoicesDB.filter(
+                productInvoiceDB=>productInvoiceDB.INVOICE_ID === invoice.id)
+            const productDTOs= productsService.constructProductsDTOFromDBMapping(productsInvoiceDB)
+            invoice.loadProductsDTO(productDTOs)
+        })
+        return invoices
 
+    }
     async makePayment(body){
         const bodyInvoice=body.invoice
         const invoiceClient= await clientsService.findOne(bodyInvoice.clientId)
